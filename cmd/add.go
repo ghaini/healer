@@ -22,10 +22,6 @@ import (
 	"os"
 )
 
-type Project struct {
-	Commands []string `json:"commands"`
-}
-
 // addCmd represents the add command
 var addCmd = &cobra.Command{
 	Use:   "add",
@@ -39,7 +35,7 @@ var addCmd = &cobra.Command{
 		file, _ := ioutil.ReadFile(path)
 		var project Project
 		json.Unmarshal(file, &project)
-		project.Commands = append(project.Commands, command)
+		project.Up.Commands = append(project.Up.Commands, command)
 		jsonString, _ := json.Marshal(project)
 		_ = ioutil.WriteFile(path, jsonString, 0777)
 	},

@@ -35,7 +35,7 @@ var upCmd = &cobra.Command{
 		file, _ := ioutil.ReadFile(path)
 		var project Project
 		json.Unmarshal(file, &project)
-		for _, command := range project.Commands {
+		for _, command := range project.Up.Commands {
 			cmd.Printf("execute %s command... \n", command)
 			output, _ := exec.Command("/bin/bash","-c", command).CombinedOutput()
 			cmd.Println(string(output))
