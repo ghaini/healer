@@ -20,31 +20,32 @@ import (
 	"github.com/spf13/cobra"
 	"io/ioutil"
 	"os"
+	"os/exec"
 )
 
-// addCmd represents the add command
-var addCmd = &cobra.Command{
-	Use:   "add",
-	Short: "add commands to run the project",
-	Long:  ``,
+// upCmd represents the up command
+var upCmd = &cobra.Command{
+	Use:   "project-up",
+	Short: "up project",
+	Long:  "",
 	Run: func(cmd *cobra.Command, args []string) {
 		projectName, _ := cmd.Flags().GetString("project-name")
-		command, _ := cmd.Flags().GetString("command")
 		name, _ := os.UserHomeDir()
 		path := name + "/.healer/" + projectName + ".json"
 		file, _ := ioutil.ReadFile(path)
 		var project Project
 		json.Unmarshal(file, &project)
-		project.Up.Commands = append(project.Up.Commands, command)
-		jsonString, _ := json.Marshal(project)
-		_ = ioutil.WriteFile(path, jsonString, 0777)
+		for _, command := range project.Up.Commands {
+			cmd.Printf("execute %s command... \n", command)
+			output, _ := exec.Command("/bin/bash","-c", command).CombinedOutput()
+			cmd.Println(string(output))
+		}
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(addCmd)
-	addCmd.Flags().StringP("project-name", "p", "", "project name (required)")
-	addCmd.Flags().StringP("command", "c", "", "command (required)")
-	addCmd.MarkFlagRequired("project-name")
-	addCmd.MarkFlagRequired("command")
+	rootCmd.AddCommand(upCmd)
+	upCmd.Flags().StringP("project-name", "p", "", "project name (required)")
+	upCmd.MarkFlagRequired("project-name")
+
 }

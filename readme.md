@@ -14,23 +14,23 @@
 
 **create a project**:
    
-    command: healer project -n {project name}
+    command: healer project-create -n {project name}
     
-    example: healer project -n myProject
+    example: healer project-create -n myProject
     
 **add a command to project**:
    
-    command: healer add -p {project name} -c {command}
+    command: healer command-create -p {project name} -c {command}
     
-    example: healer project -p myProject -c "ls -al"
+    example: healer command-create -p myProject -c "ls -al"
     
 **up project**:
        
-    command: healer up -p {project name}
+    command: healer project-up -p {project name}
         
-    example: healer up -p myProject
+    example: healer project-up -p myProject
         
     
 **list of projects**:
        
-    command: healer list
+    command: healer project-list

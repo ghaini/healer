@@ -16,28 +16,27 @@ limitations under the License.
 package cmd
 
 import (
-	"github.com/spf13/cobra"
 	"io/ioutil"
 	"os"
-	"strings"
+
+	"github.com/spf13/cobra"
 )
 
-// listCmd represents the list command
-var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "get a list of projects",
+// projectCmd represents the project command
+var projectCmd = &cobra.Command{
+	Use:   "project-create",
+	Short: "build a project that has a number of microservices",
 	Long:  "",
 	Run: func(cmd *cobra.Command, args []string) {
+		projectName, _ := cmd.Flags().GetString("name")
 		name, _ := os.UserHomeDir()
-		path := name + "/.healer/"
-		files, _ := ioutil.ReadDir(path)
-
-		for _, f := range files {
-			cmd.Println(strings.ReplaceAll(f.Name(), ".json", ""))
-		}
+		path := name + "/.healer/" + projectName + ".json"
+		ioutil.WriteFile(path, []byte("{}"), 0777)
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(listCmd)
+	rootCmd.AddCommand(projectCmd)
+	projectCmd.Flags().StringP("name", "n", "", "project name (required)")
+	projectCmd.MarkFlagRequired("name")
 }
