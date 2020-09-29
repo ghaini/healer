@@ -2,6 +2,13 @@
 <p align="center">
  <img src="https://img.techpowerup.org/200925/0-1.png" width="400px">
 </p>
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/ghaini/Healer)](https://goreportcard.com/report/github.com/ghaini/Healer)
+[![GoDoc](https://godoc.org/github.com/ghaini/Healer?status.svg)](https://godoc.org/github.com/ghaini/Healer)
+[![LICENSE](https://img.shields.io/github/license/ghaini/Healer.svg?style=flat-square)](https://github.com/ghaini/Healer/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/ghaini/Healer)](https://github.com/ghaini/Healer/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/ghaini/Healer)](https://github.com/ghaini/Healer/issues)
+
 <h2>manage microservices in local environment</h2>
 
 :exclamation:  Currently, Healer is in the Pre-alpha version. :exclamation:
