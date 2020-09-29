@@ -17,12 +17,12 @@ package cmd
 
 import (
 	"encoding/json"
-	"github.com/spf13/cobra"
 	"io/ioutil"
 	"os"
+
+	"github.com/spf13/cobra"
 )
 
-// addCmd represents the add command
 var addCmdDown = &cobra.Command{
 	Use:   "command-create-down",
 	Short: "add a down command to project",
@@ -34,7 +34,7 @@ var addCmdDown = &cobra.Command{
 		path := name + "/.healer/" + projectName + ".json"
 		file, _ := ioutil.ReadFile(path)
 		var project Project
-		json.Unmarshal(file, &project)
+		_ = json.Unmarshal(file, &project)
 		project.Down.Commands = append(project.Down.Commands, command)
 		jsonString, _ := json.Marshal(project)
 		_ = ioutil.WriteFile(path, jsonString, 0777)
@@ -45,6 +45,6 @@ func init() {
 	rootCmd.AddCommand(addCmdDown)
 	addCmdDown.Flags().StringP("project-name", "p", "", "project name (required)")
 	addCmdDown.Flags().StringP("command", "c", "", "command (required)")
-	addCmdDown.MarkFlagRequired("project-name")
-	addCmdDown.MarkFlagRequired("command")
+	_ = addCmdDown.MarkFlagRequired("project-name")
+	_ = addCmdDown.MarkFlagRequired("command")
 }

@@ -17,11 +17,11 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 	"log"
 	"os"
 
 	homedir "github.com/mitchellh/go-homedir"
+	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
@@ -44,7 +44,7 @@ type Down struct {
 var rootCmd = &cobra.Command{
 	Use:   "healer",
 	Short: "Microservices Local Development",
-	Long: "A better experience than developing microservices locally",
+	Long:  "A better experience than developing microservices locally",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -56,11 +56,11 @@ func Execute() {
 	}
 }
 
+// nolint
 func init() {
 	cobra.OnInitialize(initConfig)
 	name, _ := os.UserHomeDir()
-	os.Mkdir(name+"/.healer", 0777)
-
+	_ = os.Mkdir(name+"/.healer", 0777)
 }
 
 // initConfig reads in config file and ENV variables if set.

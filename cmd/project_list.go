@@ -16,13 +16,13 @@ limitations under the License.
 package cmd
 
 import (
-	"github.com/spf13/cobra"
 	"io/ioutil"
 	"os"
 	"strings"
+
+	"github.com/spf13/cobra"
 )
 
-// listCmd represents the list command
 var listCmd = &cobra.Command{
 	Use:   "project-list",
 	Short: "get a list of projects",

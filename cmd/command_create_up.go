@@ -17,12 +17,12 @@ package cmd
 
 import (
 	"encoding/json"
-	"github.com/spf13/cobra"
 	"io/ioutil"
 	"os"
+
+	"github.com/spf13/cobra"
 )
 
-// addCmd represents the add command
 var addCmdUp = &cobra.Command{
 	Use:   "command-create-up",
 	Short: "add a up command to project",
@@ -34,7 +34,7 @@ var addCmdUp = &cobra.Command{
 		path := name + "/.healer/" + projectName + ".json"
 		file, _ := ioutil.ReadFile(path)
 		var project Project
-		json.Unmarshal(file, &project)
+		_ = json.Unmarshal(file, &project)
 		project.Up.Commands = append(project.Up.Commands, command)
 		jsonString, _ := json.Marshal(project)
 		_ = ioutil.WriteFile(path, jsonString, 0777)
@@ -45,6 +45,6 @@ func init() {
 	rootCmd.AddCommand(addCmdUp)
 	addCmdUp.Flags().StringP("project-name", "p", "", "project name (required)")
 	addCmdUp.Flags().StringP("command", "c", "", "command (required)")
-	addCmdUp.MarkFlagRequired("project-name")
-	addCmdUp.MarkFlagRequired("command")
+	_ = addCmdUp.MarkFlagRequired("project-name")
+	_ = addCmdUp.MarkFlagRequired("command")
 }

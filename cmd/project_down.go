@@ -17,13 +17,13 @@ package cmd
 
 import (
 	"encoding/json"
-	"github.com/spf13/cobra"
 	"io/ioutil"
 	"os"
 	"os/exec"
+
+	"github.com/spf13/cobra"
 )
 
-// downCmd represents the down command
 var downCmd = &cobra.Command{
 	Use:   "project-down",
 	Short: "down project",
@@ -34,10 +34,10 @@ var downCmd = &cobra.Command{
 		path := name + "/.healer/" + projectName + ".json"
 		file, _ := ioutil.ReadFile(path)
 		var project Project
-		json.Unmarshal(file, &project)
+		_ = json.Unmarshal(file, &project)
 		for _, command := range project.Down.Commands {
 			cmd.Printf("execute %s command... \n", command)
-			output, _ := exec.Command("/bin/bash","-c", command).CombinedOutput()
+			output, _ := exec.Command("/bin/bash", "-c", command).CombinedOutput()
 			cmd.Println(string(output))
 		}
 	},
@@ -46,6 +46,5 @@ var downCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(downCmd)
 	downCmd.Flags().StringP("project-name", "p", "", "project name (required)")
-	downCmd.MarkFlagRequired("project-name")
-
+	_ = downCmd.MarkFlagRequired("project-name")
 }

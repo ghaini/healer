@@ -22,7 +22,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// projectCmd represents the project command
 var projectCmd = &cobra.Command{
 	Use:   "project-create",
 	Short: "build a project that has a number of microservices",
@@ -31,12 +30,12 @@ var projectCmd = &cobra.Command{
 		projectName, _ := cmd.Flags().GetString("name")
 		name, _ := os.UserHomeDir()
 		path := name + "/.healer/" + projectName + ".json"
-		ioutil.WriteFile(path, []byte("{}"), 0777)
+		_ = ioutil.WriteFile(path, []byte("{}"), 0777)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(projectCmd)
 	projectCmd.Flags().StringP("name", "n", "", "project name (required)")
-	projectCmd.MarkFlagRequired("name")
+	_ = projectCmd.MarkFlagRequired("name")
 }
