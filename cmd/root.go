@@ -56,7 +56,6 @@ func Execute() {
 	}
 }
 
-// nolint
 func init() {
 	cobra.OnInitialize(initConfig)
 	name, _ := os.UserHomeDir()
