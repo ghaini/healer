@@ -15,15 +15,15 @@
 
     go get https://github.com/ghaini/healer 
     
-### Documentation
+### Documentation:
 
 The <a href="https://github.com/ghaini/Healer/wiki">wiki</a> contains all the documentation related to Healer.
 
-### Submitting bugs and feature requests
+### Submitting bugs and feature requests:
 
 Bugs and feature request are tracked on <a href="https://github.com/ghaini/Healer/issues">GitHub</a>
 
-### License
+### License:
 
 Healer is under the Apache 2.0 license. See the <a href="https://github.com/ghaini/Healer/blob/master/LICENSE">LICENSE</a> file for details.
 
