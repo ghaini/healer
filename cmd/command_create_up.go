@@ -23,10 +23,10 @@ import (
 )
 
 // addCmd represents the add command
-var addCmd = &cobra.Command{
-	Use:   "command-create",
-	Short: "add commands to run the project",
-	Long:  ``,
+var addCmdUp = &cobra.Command{
+	Use:   "command-create-up",
+	Short: "add a up command to project",
+	Long:  "",
 	Run: func(cmd *cobra.Command, args []string) {
 		projectName, _ := cmd.Flags().GetString("project-name")
 		command, _ := cmd.Flags().GetString("command")
@@ -42,9 +42,9 @@ var addCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(addCmd)
-	addCmd.Flags().StringP("project-name", "p", "", "project name (required)")
-	addCmd.Flags().StringP("command", "c", "", "command (required)")
-	addCmd.MarkFlagRequired("project-name")
-	addCmd.MarkFlagRequired("command")
+	rootCmd.AddCommand(addCmdUp)
+	addCmdUp.Flags().StringP("project-name", "p", "", "project name (required)")
+	addCmdUp.Flags().StringP("command", "c", "", "command (required)")
+	addCmdUp.MarkFlagRequired("project-name")
+	addCmdUp.MarkFlagRequired("command")
 }
