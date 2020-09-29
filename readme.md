@@ -6,31 +6,24 @@
 
 :exclamation:  Currently, Healer is in the Pre-alpha version. :exclamation:
 
+<p>
+ Healer helps you run a microservices development environment more easily on personal devices.
+ a few commands are needed to run the development environment. enter all commands in Healer and always run development environment with one command.
+</p>
+
 ### Installation:
 
     go get https://github.com/ghaini/healer 
     
-### commands:
+### Documentation:
 
-**create a project**:
-   
-    command: healer project-create -n {project name}
-    
-    example: healer project-create -n myProject
-    
-**add a command to project**:
-   
-    command: healer command-create -p {project name} -c {command}
-    
-    example: healer command-create -p myProject -c "ls -al"
-    
-**up project**:
-       
-    command: healer project-up -p {project name}
-        
-    example: healer project-up -p myProject
-        
-    
-**list of projects**:
-       
-    command: healer project-list
+The <a href="https://github.com/ghaini/Healer/wiki">wiki</a> contains all the documentation related to Healer.
+
+### Submitting bugs and feature requests:
+
+Bugs and feature request are tracked on <a href="https://github.com/ghaini/Healer/issues">GitHub</a>
+
+### License:
+
+Healer is under the Apache 2.0 license. See the <a href="https://github.com/ghaini/Healer/blob/master/LICENSE">LICENSE</a> file for details.
+
