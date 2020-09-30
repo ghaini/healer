@@ -27,18 +27,6 @@ import (
 
 var cfgFile string
 
-type Project struct {
-	Up   Up   `json:"up"`
-	Down Down `json:"down"`
-}
-
-type Up struct {
-	Commands []string `json:"commands"`
-}
-
-type Down struct {
-	Commands []string `json:"commands"`
-}
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{

@@ -16,11 +16,8 @@ limitations under the License.
 package cmd
 
 import (
-	"encoding/json"
-	"io/ioutil"
-	"os"
-
 	"github.com/spf13/cobra"
+	"healer/storage"
 )
 
 var addCmdUp = &cobra.Command{
@@ -30,14 +27,9 @@ var addCmdUp = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		projectName, _ := cmd.Flags().GetString("project-name")
 		command, _ := cmd.Flags().GetString("command")
-		name, _ := os.UserHomeDir()
-		path := name + "/.healer/" + projectName + ".json"
-		file, _ := ioutil.ReadFile(path)
-		var project Project
-		_ = json.Unmarshal(file, &project)
+		project, _ := storage.ReadProject(projectName)
 		project.Up.Commands = append(project.Up.Commands, command)
-		jsonString, _ := json.Marshal(project)
-		_ = ioutil.WriteFile(path, jsonString, 0777)
+		_ = storage.SaveProject(projectName, project)
 	},
 }
 

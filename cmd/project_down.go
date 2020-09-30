@@ -16,9 +16,7 @@ limitations under the License.
 package cmd
 
 import (
-	"encoding/json"
-	"io/ioutil"
-	"os"
+	"healer/storage"
 	"os/exec"
 
 	"github.com/spf13/cobra"
@@ -30,11 +28,7 @@ var downCmd = &cobra.Command{
 	Long:  "",
 	Run: func(cmd *cobra.Command, args []string) {
 		projectName, _ := cmd.Flags().GetString("project-name")
-		name, _ := os.UserHomeDir()
-		path := name + "/.healer/" + projectName + ".json"
-		file, _ := ioutil.ReadFile(path)
-		var project Project
-		_ = json.Unmarshal(file, &project)
+		project, _ := storage.ReadProject(projectName)
 		for _, command := range project.Down.Commands {
 			cmd.Printf("execute %s command... \n", command)
 			output, _ := exec.Command("/bin/bash", "-c", command).CombinedOutput()
