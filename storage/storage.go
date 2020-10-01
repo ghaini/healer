@@ -31,6 +31,9 @@ func ReadProject(name string) (Project, error) {
 	}
 	path := home + "/.healer/" + name + ".json"
 	file, err := ioutil.ReadFile(path)
+	if err != nil {
+		return Project{}, err
+	}
 	err = json.Unmarshal(file, &project)
 	return project, err
 }
