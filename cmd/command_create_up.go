@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 	"healer/storage"
+	"log"
 )
 
 var addCmdUp = &cobra.Command{
@@ -10,11 +11,23 @@ var addCmdUp = &cobra.Command{
 	Short: "add a up command to project",
 	Long:  "",
 	Run: func(cmd *cobra.Command, args []string) {
-		projectName, _ := cmd.Flags().GetString("project-name")
-		command, _ := cmd.Flags().GetString("command")
-		project, _ := storage.ReadProject(projectName)
+		projectName, err := cmd.Flags().GetString("project-name")
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+		command, err := cmd.Flags().GetString("command")
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+		project, err := storage.ReadProject(projectName)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
 		project.Up.Commands = append(project.Up.Commands, command)
-		_ = storage.SaveProject(projectName, project)
+		err = storage.SaveProject(projectName, project)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
 	},
 }
 

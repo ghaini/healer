@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"healer/storage"
+	"log"
 
 	"github.com/spf13/cobra"
 )
@@ -11,11 +12,23 @@ var addCmdDown = &cobra.Command{
 	Short: "add a down command to project",
 	Long:  "",
 	Run: func(cmd *cobra.Command, args []string) {
-		projectName, _ := cmd.Flags().GetString("project-name")
-		command, _ := cmd.Flags().GetString("command")
-		project, _ := storage.ReadProject(projectName)
+		projectName, err := cmd.Flags().GetString("project-name")
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+		command, err := cmd.Flags().GetString("command")
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+		project, err := storage.ReadProject(projectName)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
 		project.Down.Commands = append(project.Down.Commands, command)
-		_ = storage.SaveProject(projectName, project)
+		err = storage.SaveProject(projectName, project)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
 	},
 }
 

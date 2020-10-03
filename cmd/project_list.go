@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"io/ioutil"
+	"log"
 	"os"
 	"strings"
 
@@ -13,10 +14,15 @@ var listCmd = &cobra.Command{
 	Short: "get a list of projects",
 	Long:  "",
 	Run: func(cmd *cobra.Command, args []string) {
-		name, _ := os.UserHomeDir()
+		name, err := os.UserHomeDir()
+		if err != nil {
+			log.Fatal(err.Error())
+		}
 		path := name + "/.healer/"
-		files, _ := ioutil.ReadDir(path)
-
+		files, err := ioutil.ReadDir(path)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
 		for _, f := range files {
 			cmd.Println(strings.ReplaceAll(f.Name(), ".json", ""))
 		}

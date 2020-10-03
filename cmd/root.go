@@ -22,15 +22,20 @@ var rootCmd = &cobra.Command{
 // Execute adds all child commands to the root command and sets flags appropriately.
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		log.Fatal(err.Error())
 	}
 }
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	name, _ := os.UserHomeDir()
-	_ = os.Mkdir(name+"/.healer", 0777)
+	name, err := os.UserHomeDir()
+	if err != nil {
+		name = "/home/root"
+	}
+	err = os.Mkdir(name+"/.healer", 0777)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 }
 
 // initConfig reads in config file and ENV variables if set.

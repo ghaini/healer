@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 	"healer/storage"
+	"log"
 )
 
 var projectCmd = &cobra.Command{
@@ -10,13 +11,22 @@ var projectCmd = &cobra.Command{
 	Short: "build a project that has a number of microservices",
 	Long:  "",
 	Run: func(cmd *cobra.Command, args []string) {
-		projectName, _ := cmd.Flags().GetString("name")
-		_ = storage.CreateProject(projectName)
+		projectName, err := cmd.Flags().GetString("name")
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+		err = storage.CreateProject(projectName)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(projectCmd)
 	projectCmd.Flags().StringP("name", "n", "", "project name (required)")
-	_ = projectCmd.MarkFlagRequired("name")
+	err := projectCmd.MarkFlagRequired("name")
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 }
