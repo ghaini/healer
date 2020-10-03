@@ -5,7 +5,7 @@
 
 <h2>manage microservices in local environment</h2>
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/ghaini/Healer)](https://goreportcard.com/report/github.com/ghaini/Healer)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ghaini/healer)](https://goreportcard.com/report/github.com/ghaini/healer)
 [![GoDoc](https://godoc.org/github.com/ghaini/Healer?status.svg)](https://godoc.org/github.com/ghaini/Healer)
 [![LICENSE](https://img.shields.io/github/license/ghaini/Healer.svg?style=flat-square)](https://github.com/ghaini/Healer/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/ghaini/Healer)](https://github.com/ghaini/Healer/stargazers)
