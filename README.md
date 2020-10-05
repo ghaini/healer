@@ -20,7 +20,7 @@
 
 ### Installation:
 
-    go get https://github.com/ghaini/healer 
+    go get github.com/ghaini/healer 
     
 ### Documentation:
 
