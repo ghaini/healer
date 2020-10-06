@@ -16,7 +16,9 @@ var cfgFile string
 var rootCmd = &cobra.Command{
 	Use:   "healer",
 	Short: "Microservices Local Development",
-	Long:  "A better experience than developing microservices locally",
+	Long:  `A better experience than developing microservices locally
+Documentation: https://github.com/ghaini/healer/wiki
+`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
